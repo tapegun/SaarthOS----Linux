@@ -1,0 +1,21 @@
+make: Warning: File `Makefile.dep' has modification time 7.9 s in the future
+gcc  -nostdinc -g -I.  -c -o boot.o boot.S
+gcc  -nostdinc -g -I.  -c -o x86_desc.o x86_desc.S
+gcc  -nostdinc -g -I.  -c -o interrupts/handlers.o interrupts/handlers.S
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o kernel.o kernel.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o lib.o lib.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o paging.o paging.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o tests.o tests.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o drivers/fs.o drivers/fs.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o drivers/keyboard.o drivers/keyboard.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o drivers/rtc.o drivers/rtc.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o drivers/terminal.o drivers/terminal.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o interrupts/exceptions.o interrupts/exceptions.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o interrupts/i8259.o interrupts/i8259.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o interrupts/interrupts.o interrupts/interrupts.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o syscall/process.o syscall/process.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g -I.  -c -o syscall/syscalls.o syscall/syscalls.c
+rm -f bootimg
+gcc -nostdlib -static boot.o x86_desc.o interrupts/handlers.o kernel.o lib.o paging.o tests.o drivers/fs.o drivers/keyboard.o drivers/rtc.o drivers/terminal.o interrupts/exceptions.o interrupts/i8259.o interrupts/interrupts.o syscall/process.o syscall/syscalls.o -Ttext=0x400000 -o bootimg
+sudo ./debug.sh
+make: warning:  Clock skew detected.  Your build may be incomplete.

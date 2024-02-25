@@ -1,0 +1,6 @@
+1)  vertical line not working... solved, error in calculating the index to load the buffer into
+2)  trouble loading the buffer to the correct spot in memory.... solved, I wasn't multiplying the destination location offset(1440) by the page number
+3)  flashing status bar at the top (hardstuck, will move on) ... solved, I changed teh target_img variable to make it such that the status bar buffer gets put in the right place
+4)  mask doesn't cover the trail... solved, wasnt writing the trail after the mask in front.
+5)  the time is being displayed seconds first.. I was loading my global variable "buttons" low first then high
+6)  floating caption was breaking my game so I removed it.
